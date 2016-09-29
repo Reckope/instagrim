@@ -8,9 +8,68 @@ and open the template in the editor.
     Author     : Administrator
 */
 
+body {
+    background-color: #E7FCFF;
+    font-family: Avenir;
+}
+
+a:link {
+    
+    text-decoration: none;
+    color: black;
+    padding: 5px;
+}
+
+a:visited {
+    
+    background-color: cyan;
+    color: black;
+}
+
+a:hover {
+    
+    background-color: #468EA6;
+    color: black;
+}
+
+a:active {
+
+    color: black;
+} 
 
 nav {
     text-align: left;
     border: 2px;
-    float: right;
+    float: center;
+}
+
+.MainHeader {    
+    
+    background-color: #D6F5FF;
+    text-align: center;
+    padding: 10px;
+    font-family: Montserrat;
+    margin-top: 0px;
+}
+
+#IndexHeader {
+    
+    //color: blue;
+    //font-family: Billabong;
+    
+}
+.List {
+    
+    background-color: #D6F5FF;
+    text-align: center;
+    padding: 5px;
+    margin-top: 5px;
+    
+}
+
+.List li{
+    
+    display: inline;
+    font-size: 30px;
+    padding: 30px;
 }

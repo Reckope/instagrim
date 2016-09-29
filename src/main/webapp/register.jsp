@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="uk.ac.dundee.computing.aec.instagrim.stores.*" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,10 +14,36 @@
         <link rel="stylesheet" type="text/css" href="Styles.css" />
     </head>
     <body>
-        <header>
+        <header class = "MainHeader">
         <h1>InstaGrim ! </h1>
-        <h2>Your world in Black and White</h2>
+        <h3>Your world in Black and White</h3>
         </header>
+        
+        <nav>
+            <ul class = "List">
+                
+                <%    
+                        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                        if (lg != null) {
+                            String UserName = lg.getUsername();
+                            if (lg.getlogedin()) {
+                 %>
+                <li><a href="/Instagrim/MainProfile.jsp">Profile</a></li>              
+                <li><a href="/Instagrim/upload.jsp">Upload</a></li>
+                <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
+                <li> <a href ="Profile" method ="GET">Logout</a></li>
+                    <%}
+                            }else{
+                                %>
+                <li><a href = "/Instagrim">Home</a></li>
+                <li><a href="upload.jsp">Upload</a></li>
+                <li><a href="register.jsp">Register</a></li>
+                <li><a href="login.jsp">Login</a></li>
+                <%                      
+                    }%>
+            </ul>
+        </nav>
+        
         <nav>
             <ul>
                 
@@ -32,7 +59,7 @@
                     <li>Password <input type="password" name="password"></li>
                 </ul>
                 <br/>
-                <input type="submit" value="Regidter"> 
+                <input type="submit" value="Register"> 
             </form>
 
         </article>

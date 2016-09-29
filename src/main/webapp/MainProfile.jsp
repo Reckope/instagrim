@@ -1,9 +1,8 @@
 <%-- 
-    Document   : index
-    Created on : Sep 28, 2014, 7:01:44 PM
-    Author     : Administrator
+    Document   : profile
+    Created on : Sep 29, 2016, 3:26:00 PM
+    Author     : JoeDavis
 --%>
-
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="uk.ac.dundee.computing.aec.instagrim.stores.*" %>
@@ -44,9 +43,11 @@
             </ul>
         </nav>
             
+            <p>Hello world!</p>
+            
         <footer>
             <ul>
-                <li>&COPY; Andy C & Joe Davis</li>
+                <li>&COPY; Andy C & Joe Davis TEST</li>
             </ul>
         </footer>
     </body>
