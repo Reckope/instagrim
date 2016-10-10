@@ -20,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts;
 import uk.ac.dundee.computing.aec.instagrim.models.User;
 import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
+import uk.ac.dundee.computing.aec.instagrim.stores.ProfileStore;
 
 /**
  *
@@ -53,19 +54,35 @@ public class Login extends HttpServlet {
         
         User us=new User();
         us.setCluster(cluster);
+        
         boolean isValid=us.IsValidUser(username, password);
         HttpSession session=request.getSession();
+        
         System.out.println("Session in servlet "+session);
+       
+        
         if (isValid){
+            us.getUserInfo(username);
             LoggedIn lg= new LoggedIn();
             lg.setLogedin();
             lg.setUsername(username);
-            //request.setAttribute("LoggedIn", lg);
-            
+            request.setAttribute("LoggedIn", lg);
             session.setAttribute("LoggedIn", lg);
+
+            ProfileStore profilestore = new ProfileStore();
+            profilestore.setFirstName(us.getUserInfo(username)[0]);
+            profilestore.setSurname(us.getUserInfo(username)[1]);
+            profilestore.setEmail(us.getUserInfo(username)[2]);
+            //profilestore.setFirstName(us.getUserInfo(username)[0]);
+
+            session.setAttribute("ProfileStore", profilestore);
+            
+            //session.setAttribute("LoggedIn", lg);
             System.out.println("Session in servlet "+session);
-            RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
+            RequestDispatcher rd=request.getRequestDispatcher("MainProfile.jsp");
 	    rd.forward(request,response);
+            
+            
             
         }else{
             response.sendRedirect("/Instagrim/login.jsp");

@@ -29,14 +29,14 @@
                             if (lg.getlogedin()) {
                  %>
                 <li><a href="/Instagrim/MainProfile.jsp">Profile</a></li>              
-                <li><a href="/Instagrim/upload.jsp">Upload</a></li>
+                <li><a href="/Instagrim/upload.jsp" class = "selected">Upload</a></li>
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
                 <li> <a href ="Profile" method ="GET">Logout</a></li>
                     <%}
                             }else{
                                 %>
                 <li><a href = "/Instagrim">Home</a></li>
-                <li><a href="upload.jsp">Upload</a></li>
+                <li><a href="upload.jsp" class = "selected">Upload</a></li>
                 <li><a href="register.jsp">Register</a></li>
                 <li><a href="login.jsp">Login</a></li>
                 <%                      
@@ -44,27 +44,27 @@
             </ul>
         </nav>
         
-        <nav>
+        <!--<nav>
             <ul>
                 <li class="nav"><a href="upload.jsp">Upload</a></li>
                 <li class="nav"><a href="/Instagrim/Images/majed">Sample Images</a></li>
             </ul>
-        </nav>
+        </nav>-->
  
-        <article>
+        <article class = "ArticleDesign">
             <h3>File Upload</h3>
             <form method="POST" enctype="multipart/form-data" action="Image">
                 File to upload: <input type="file" name="upfile"><br/>
 
                 <br/>
-                <input type="submit" value="Press"> to upload the file!
+                <input type="submit" class ="button" value="Upload file">
             </form>
 
         </article>
         <footer>
-            <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
-            </ul>
+            
+            <p>&COPY; Andy C & Joe Davis</p>
+            
         </footer>
     </body>
 </html>

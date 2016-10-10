@@ -37,36 +37,37 @@
                                 %>
                 <li><a href = "/Instagrim">Home</a></li>
                 <li><a href="upload.jsp">Upload</a></li>
-                <li><a href="register.jsp">Register</a></li>
+                <li><a href="register.jsp" class = "selected">Register</a></li>
                 <li><a href="login.jsp">Login</a></li>
                 <%                      
                     }%>
             </ul>
         </nav>
         
-        <nav>
+        <!--<nav>
             <ul>
                 
                 <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
             </ul>
-        </nav>
+        </nav>-->
        
-        <article>
-            <h3>Register as user</h3>
+        <article class = "ArticleDesign">
+            <h3>Register</h3>
             <form method="POST"  action="Register">
-                <ul>
-                    <li>User Name <input type="text" name="username"></li>
-                    <li>Password <input type="password" name="password"></li>
-                </ul>
-                <br/>
-                <input type="submit" value="Register"> 
+                <input type="text" name="firstname" placeholder="Firstname">
+                <input type="text" name="surname" placeholder="Surname">
+                <input type="email" name="email" placeholder="Email">
+                <input type="text" name="username" placeholder="Username">
+                <input type="password" name="password" placeholder="Password">
+                <p> </p>
+                <input type="submit" class ="button" value="Register"> 
             </form>
 
         </article>
         <footer>
-            <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
-            </ul>
+            
+            <p>&COPY; Andy C & Joe Davis</p>
+            
         </footer>
     </body>
 </html>

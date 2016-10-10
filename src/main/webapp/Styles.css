@@ -9,8 +9,90 @@ and open the template in the editor.
 */
 
 body {
-    background-color: #E7FCFF;
-    font-family: Avenir;
+    background-color: #F2F7F8;
+    font-family: LifesABeach;
+    margin: 0;
+    font-size: 20px;
+}
+
+#container {
+    
+    padding-left: 20px;
+    padding-right: 20px;
+    
+}
+
+.button {
+    background-color: #A8BABF;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+input[type=text], [type=password], [type=email] {
+    
+    margin: auto;
+    margin-top: 15px;
+    width: 80%;
+    font-size: 20px;
+    padding: 4px 20px 4px 40px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    
+}
+
+input[type=text] {
+    
+    background-image: url('images/username.png');
+    background-position: 5px 5px;
+    background-size: 25px 25px;
+    background-repeat: no-repeat;
+}
+
+input[type=password] {
+    
+    background-image: url('images/padlock.png');
+    background-position: 4px 3px;
+    background-size: 25px 25px;
+    background-repeat: no-repeat;
+    
+}
+
+input[type=phone] {
+    
+    background-image: url('images/phone.png');
+    background-position: 4px 3px;
+    background-size: 25px 25px;
+    background-repeat: no-repeat;
+    
+}
+
+input[type=email] {
+    
+    background-image: url('images/email.png');
+    background-position: 4px 3px;
+    background-size: 25px 25px;
+    background-repeat: no-repeat;
+    
+}
+
+footer {
+    
+    text-align: center;
+    background-color: #D6F5FF;
+    
+}
+
+footer p {
+    
+    padding: 10px;
 }
 
 a:link {
@@ -22,19 +104,26 @@ a:link {
 
 a:visited {
     
-    background-color: cyan;
+    //background-color: cyan;
     color: black;
 }
 
-a:hover {
+li a:hover {
     
     background-color: #468EA6;
     color: black;
 }
 
-a:active {
+.button:hover {
+    
+    background-color: #828C8F;
+    
+}
+
+li a:active {
 
     color: black;
+    background-color: #A8BABF;
 } 
 
 nav {
@@ -47,9 +136,9 @@ nav {
     
     background-color: #D6F5FF;
     text-align: center;
-    padding: 10px;
-    font-family: Montserrat;
-    margin-top: 0px;
+    padding: 5px;
+    //font-family: Montserrat;
+    
 }
 
 #IndexHeader {
@@ -70,6 +159,45 @@ nav {
 .List li{
     
     display: inline;
-    font-size: 30px;
+    font-size: 35px;
     padding: 30px;
+}
+
+li {
+    
+    list-style: none;
+}
+
+.ArticleDesign {
+    
+    text-align: center;
+    border-style: solid;
+    border-radius: 10px;
+    width: 30%;
+    margin: auto;
+    border-color: #A967D5;
+}
+
+.ArticleDesign h3 {
+    
+    padding: 10px;
+    margin: 0px;
+    background-color: #A967D5;
+    
+}
+
+#Pictures {
+    
+    text-align: center;
+    border-style: solid;
+    border-radius: 10px;
+    width: 80%;
+    margin: auto;
+    border-color: #B1ECFF;
+    
+}
+.selected {
+    
+    background-color: #A8BABF;
+
 }
