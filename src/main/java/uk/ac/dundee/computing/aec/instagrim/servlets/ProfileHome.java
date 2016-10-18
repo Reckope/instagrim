@@ -24,9 +24,34 @@ import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
  *
  * @author JoeDavis
  */
-@WebServlet(name = "Profile", urlPatterns = {"/Profile"})
-public class Profile extends HttpServlet {
-    Cluster cluster;
+@WebServlet(name = "ProfileHome", urlPatterns = {"/ProfileHome"})
+public class ProfileHome extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ProfileHome</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ProfileHome at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -40,10 +65,8 @@ public class Profile extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        //if(session != null)
-        session.invalidate();
-            RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+        
+            RequestDispatcher rd = request.getRequestDispatcher("MainProfile.jsp");
             rd.forward(request,response);
     }
 
@@ -58,16 +81,7 @@ public class Profile extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        HttpSession session=request.getSession();
-        LoggedIn lg= (LoggedIn)session.getAttribute("LoggedIn");
-        String username = lg.getUsername();
-        
-        User us = new User();
-        us.setCluster(cluster);
-        us.deleteUser(username);
-        response.sendRedirect("/Instagrim/Logout");
-        
+        processRequest(request, response);
     }
 
     /**

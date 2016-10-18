@@ -131,6 +131,19 @@ public class User {
             }
     }
     
+    public void deleteUser(String username){
+    
+        Session session = cluster.connect("Instagrim");
+        
+        PreparedStatement ps = session.prepare("DELETE from userprofiles WHERE login =?");
+        
+        ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute(boundStatement.bind(username));
+        
+    
+    }
+    
        public void setCluster(Cluster cluster) {
         this.cluster = cluster;
         

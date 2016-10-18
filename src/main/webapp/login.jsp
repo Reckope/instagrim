@@ -29,17 +29,17 @@
                             String UserName = lg.getUsername();
                             if (lg.getlogedin()) {
                  %>
-                <li><a href="/Instagrim/MainProfile.jsp">Profile</a></li>              
-                <li><a href="/Instagrim/upload.jsp">Upload</a></li>
+                <li><a href="/Instagrim/ProfileHome">Profile</a></li>              
+                <li><a href="/Instagrim/Upload">Upload</a></li>
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
                 <li> <a href ="Profile" method ="GET">Logout</a></li>
                     <%}
                             }else{
                                 %>
                 <li><a href = "/Instagrim">Home</a></li>
-                <li><a href="upload.jsp">Upload</a></li>
-                <li><a href="register.jsp">Register</a></li>
-                <li><a href="login.jsp" class = "selected">Login</a></li>
+                <li><a href="/Instagrim/Upload">Upload</a></li>
+                <li><a href="/Instagrim/Register">Register</a></li>
+                <li><a href="/Instagrim/Login" class = "selected">Login</a></li>
                 <%                      
                     }%>
             </ul>

@@ -32,17 +32,17 @@
                             //String FirstName = lg.getFirstName();
                             if (lg.getlogedin()) {
                  %>
-                <li><a href="/Instagrim/MainProfile.jsp" class = "selected">Profile</a></li>              
-                <li><a href="/Instagrim/upload.jsp">Upload</a></li>
+                <li><a href="/Instagrim/ProfileHome" class = "selected">Profile</a></li>            
+                <li><a href="/Instagrim/Upload">Upload</a></li>
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
                 <li> <a href ="Profile" method ="GET">Logout</a></li>
                     <%}
                             }else{
                                 %>
                 <li><a href = "/Instagrim">Home</a></li>
-                <li><a href="upload.jsp">Upload</a></li>
-                <li><a href="register.jsp">Register</a></li>
-                <li><a href="login.jsp">Login</a></li>
+                <li><a href="/Instagrim/Upload">Upload</a></li>
+                <li><a href="/Instagrim/Register">Register</a></li>
+                <li><a href="/Instagrim/Login">Login</a></li>
                 <%                      
                     }%>
             </ul>
@@ -53,8 +53,16 @@
             <p>Username: <b><%=lg.getUsername()%></b></p>
             <p>Email: <b><%=profile.getEmail()%></b></p>
             
-           <!-- <a href = "update.jsp">Update Details</a>-->
-            <a href="update.jsp" class="button" role="button">Update Details</a>
+            
+            
+            <a href="update.jsp" class="button" >Update Details</a>
+            
+            <form method="POST"  action="DeleteProfile">
+                
+                <input type = "submit" class = "button" value = "Delete Profile">
+                
+            </form>
+            
             </div>
             
         </div>    
