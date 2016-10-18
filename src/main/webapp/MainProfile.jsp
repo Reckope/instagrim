@@ -53,7 +53,7 @@
             <p>Username: <b><%=lg.getUsername()%></b></p>
             <p>Email: <b><%=profile.getEmail()%></b></p>
             
-            
+            <span style="float: right"> <a href="/Instagrim/Image/<%=profile.getProfileUUID()%>" ><img style="display:inline" src="/Instagrim/Thumb/<%=profile.getProfileUUID()%>"></a></span>
             
             <a href="update.jsp" class="button" >Update Details</a>
             

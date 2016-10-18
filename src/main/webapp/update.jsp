@@ -62,6 +62,13 @@
                 <p> </p>
                 <input type = "submit" value ="Update Details">
             </form>
+                
+            <form method="POST" enctype="multipart/form-data" action="Image">
+                File to upload: <input type="file" name="upfile"><br/>
+                <input type = "hidden" name = "check" value = "true">
+                <br/>
+                <input type="submit" class ="button" value="Upload file">
+            </form>
 
         </article>
         <footer>

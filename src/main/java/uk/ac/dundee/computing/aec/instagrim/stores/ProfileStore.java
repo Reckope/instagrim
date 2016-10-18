@@ -15,6 +15,7 @@ public class ProfileStore {
     private String Firstname = null;
     private String Surname = null;
     private String Email = null;
+    private java.util.UUID picUUID;
     
     public void setFirstName(String firstname) {
         this.Firstname = firstname;
@@ -49,6 +50,18 @@ public class ProfileStore {
         setSurname(surname);
         setEmail(email);
         
+    }
+    
+    public void setProfileUUID(java.util.UUID picUUID){
+    
+        this.picUUID = picUUID;
+    
+    }
+    
+    public java.util.UUID getProfileUUID(){
+    
+        return picUUID;
+    
     }
     
     

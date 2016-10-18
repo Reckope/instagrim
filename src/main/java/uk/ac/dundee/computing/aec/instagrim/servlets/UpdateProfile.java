@@ -99,10 +99,13 @@ public class UpdateProfile extends HttpServlet {
         String surname = request.getParameter("surname");
         String email = request.getParameter("email");
         
+        java.util.UUID picid = us.getProfileUUID(username);
+        
         us.UpdateUser(username, firstname, surname, email);
         
         ProfileStore ps = new ProfileStore();
         ps.update(firstname, surname, email);
+        ps.setProfileUUID(picid);
         
         request.setAttribute("ProfileStore", ps);
         session.setAttribute("ProfileStore", ps);

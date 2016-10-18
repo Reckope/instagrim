@@ -55,7 +55,7 @@
             <h3>File Upload</h3>
             <form method="POST" enctype="multipart/form-data" action="Image">
                 File to upload: <input type="file" name="upfile"><br/>
-
+                <input type = "hidden" name = "check" value = "false">
                 <br/>
                 <input type="submit" class ="button" value="Upload file">
             </form>

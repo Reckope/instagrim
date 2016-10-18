@@ -25,8 +25,9 @@ import org.apache.commons.fileupload.util.Streams;
 import uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts;
 import uk.ac.dundee.computing.aec.instagrim.lib.Convertors;
 import uk.ac.dundee.computing.aec.instagrim.models.PicModel;
+import uk.ac.dundee.computing.aec.instagrim.models.User;
 import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
-import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
+import uk.ac.dundee.computing.aec.instagrim.stores.*;
 
 /**
  * Servlet implementation class Image
@@ -126,7 +127,20 @@ public class Image extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String profileCheck = request.getParameter("check");
+        boolean check = false;
+        
+        if(profileCheck.equals("true")){
+        
+            check = true;
+            
+        }
+        
+        System.out.println("Check: " + check);
+        System.out.println("ProfileCheck " + profileCheck);
+        
         for (Part part : request.getParts()) {
+            
             System.out.println("Part Name " + part.getName());
 
             String type = part.getContentType();
@@ -136,6 +150,7 @@ public class Image extends HttpServlet {
             int i = is.available();
             HttpSession session=request.getSession();
             LoggedIn lg= (LoggedIn)session.getAttribute("LoggedIn");
+            ProfileStore ps = (ProfileStore)session.getAttribute("ProfileStore");
             String username="majed";
             if (lg.getlogedin()){
                 username=lg.getUsername();
@@ -146,12 +161,24 @@ public class Image extends HttpServlet {
                 System.out.println("Length : " + b.length);
                 PicModel tm = new PicModel();
                 tm.setCluster(cluster);
-                tm.insertPic(b, type, filename, username);
+                tm.insertPic(b, type, filename, username, check);
 
                 is.close();
             }
+            if(check==true){
+            
+                User us = new User();
+                us.setCluster(cluster);
+                java.util.UUID picid = us.getProfileUUID(username);
+                ps.setProfileUUID(picid);
+                
+                request.setAttribute("ProfileStore", ps);
+                session.setAttribute("ProfileStore", ps);
+            
+            }
             RequestDispatcher rd = request.getRequestDispatcher("/upload.jsp");
              rd.forward(request, response);
+            
         }
 
     }

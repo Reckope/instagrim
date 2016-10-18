@@ -73,6 +73,9 @@ public class Login extends HttpServlet {
             profilestore.setFirstName(us.getUserInfo(username)[0]);
             profilestore.setSurname(us.getUserInfo(username)[1]);
             profilestore.setEmail(us.getUserInfo(username)[2]);
+            
+            profilestore.setProfileUUID(us.getProfileUUID(username));
+            
             //profilestore.setFirstName(us.getUserInfo(username)[0]);
 
             session.setAttribute("ProfileStore", profilestore);

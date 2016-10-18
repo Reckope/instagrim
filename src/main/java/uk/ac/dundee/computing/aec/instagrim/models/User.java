@@ -144,6 +144,24 @@ public class User {
     
     }
     
+    public java.util.UUID getProfileUUID (String username){
+    
+        java.util.UUID picid = null;
+        Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("SELECT picid FROM userprofiles WHERE login =?");
+            ResultSet rs = null;
+            BoundStatement boundStatement = new BoundStatement(ps);
+            rs = session.execute(boundStatement.bind(username));
+            
+            for (Row row : rs){
+            
+                picid = row.getUUID("picid");
+            }
+            
+        return picid;
+    
+    }
+    
        public void setCluster(Cluster cluster) {
         this.cluster = cluster;
         
