@@ -173,16 +173,28 @@ li {
     text-align: center;
     border-style: solid;
     border-radius: 10px;
-    width: 30%;
+    width: 20%;
     margin: auto;
     border-color: #A967D5;
 }
 
-.ArticleDesign h3 {
+.profileDesign {
+    
+    border-style: solid;
+    border-radius: 10px;
+    width: 50%;
+    margin: auto;
+    border-color: #A967D5;
+    
+}
+
+.ArticleDesign h3, .profileDesign h3 {
     
     padding: 10px;
     margin: 0px;
     background-color: #A967D5;
+    margin-bottom: 5px;
+    text-align: center;
     
 }
 
@@ -200,4 +212,28 @@ li {
     
     background-color: #A8BABF;
 
+}
+
+#profilePicture{
+    
+    float: right;
+    position: relative;
+    //margin-bottom: 5px;
+    
+}
+
+#profileDetails{
+    
+    //float: left;
+    margin-left: 2%;
+    margin-right: 30%;
+    margin-bottom: 50px;
+    
+}
+
+#profileButtons{
+    
+    margin: auto;
+    text-align: center;
+    
 }

@@ -52,7 +52,7 @@
         </nav>-->
        
         <article class = "ArticleDesign">
-            <h3>Register</h3>
+            <h3>Update Details</h3>
             
             <form method="POST"  action="UpdateProfile">
                 <input type = "text" name ="username" value = "<%=lg.getUsername()%>" readonly>
@@ -60,14 +60,15 @@
                 <input type="text" name="surname" placeholder="Surname">
                 <input type="email" name="email" placeholder="Email">
                 <p> </p>
-                <input type = "submit" value ="Update Details">
+                <input type = "submit" class ="button" value ="Update Details">
             </form>
-                
+            </br>    
             <form method="POST" enctype="multipart/form-data" action="Image">
-                File to upload: <input type="file" name="upfile"><br/>
+                
+                Choose Profile Picture: <input type="file" name="upfile"><br/>
                 <input type = "hidden" name = "check" value = "true">
                 <br/>
-                <input type="submit" class ="button" value="Upload file">
+                <input type="submit" class ="button" value="Upload Profile Picture">
             </form>
 
         </article>

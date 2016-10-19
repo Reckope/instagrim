@@ -48,23 +48,30 @@
             </ul>
         </nav>
         <div id = "container">  
-            <div class = "ArticleDesign">
-            <p>Hello <b><%=profile.getFirstName()%> <%=profile.getSurname()%>!</b></p>
-            <p>Username: <b><%=lg.getUsername()%></b></p>
-            <p>Email: <b><%=profile.getEmail()%></b></p>
-            
-            <span style="float: right"> <a href="/Instagrim/Image/<%=profile.getProfileUUID()%>" ><img style="display:inline" src="/Instagrim/Thumb/<%=profile.getProfileUUID()%>"></a></span>
-            
-            <a href="update.jsp" class="button" >Update Details</a>
-            
-            <form method="POST"  action="DeleteProfile">
+            <div class = "profileDesign">
+                <h3>My Profile</h3>
                 
-                <input type = "submit" class = "button" value = "Delete Profile">
+                <div id = "profilePicture">
+                    <span> <a href="/Instagrim/Image/<%=profile.getProfileUUID()%>" ><img style="display:inline" src="/Instagrim/Thumb/<%=profile.getProfileUUID()%>"></a></span>
+                </div>
                 
-            </form>
+                <div id = "profileDetails">
+                    <p>Hello <b><%=profile.getFirstName()%> <%=profile.getSurname()%>!</b></p>
+                    <p>Username: <b><%=lg.getUsername()%></b></p>
+                    <p>Email: <b><%=profile.getEmail()%></b></p>                         
+                </div>                   
             
             </div>
             
+            <div id = "profileButtons">
+                <a href="update.jsp" class="button" >Update Details</a>
+            
+                <form method="POST"  action="DeleteProfile">
+                
+                    <input type = "submit" class = "button" value = "Delete Profile">
+                
+                </form>
+            </div>
         </div>    
         <footer>
             
