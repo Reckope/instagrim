@@ -63,15 +63,15 @@
                 <input type = "submit" class ="button" value ="Update Details">
             </form>
             </br>    
-            <form method="POST" enctype="multipart/form-data" action="Image">
-                
+            <form method="POST" enctype="multipart/form-data" action="Image">                
                 Choose Profile Picture: <input type="file" name="upfile"><br/>
                 <input type = "hidden" name = "check" value = "true">
                 <br/>
-                <input type="submit" class ="button" value="Upload Profile Picture">
+                <input type="submit" class ="button" value="Upload Profile Picture">              
             </form>
 
         </article>
+                
         <footer>
             
             <p>&COPY; Andy C & Joe Davis</p>

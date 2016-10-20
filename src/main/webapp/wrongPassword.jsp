@@ -1,7 +1,7 @@
 <%-- 
-    Document   : register.jsp
-    Created on : Sep 28, 2014, 6:29:51 PM
-    Author     : Administrator
+    Document   : wrongPassword
+    Created on : Oct 20, 2016, 6:51:57 PM
+    Author     : JoeDavis
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -52,17 +52,10 @@
         </nav>-->
        
         <article class = "ArticleDesign">
-            <h3>Register</h3>
-            <form method="POST"  action="Register">
-                <input type="text" name="firstname" placeholder="Firstname">
-                <input type="text" name="surname" placeholder="Surname">
-                <input type="email" name="email" placeholder="Email">
-                <input type="text" name="username" placeholder="Username">
-                <input type="password" name="password" placeholder="Password">
-                <input type="password" name="confirmPassword" placeholder="Confirm Password">
-                <p> </p>
-                <input type="submit" class ="button" value="Register"> 
-            </form>
+            <h3>Passwords do not match</h3>
+            <h4>Please ensure both passwords match<h4>
+                    
+            <a href="/Instagrim/Register" class="button" >Back to register</a>
 
         </article>
         <footer>

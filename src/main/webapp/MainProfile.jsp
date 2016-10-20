@@ -64,7 +64,7 @@
             </div>
             
             <div id = "profileButtons">
-                <a href="update.jsp" class="button" >Update Details</a>
+                <a href="/Instagrim/UpdateProfile" class="button" >Update Details</a>
             
                 <form method="POST"  action="DeleteProfile">
                 
