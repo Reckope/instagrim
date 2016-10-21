@@ -135,7 +135,7 @@ public class PicModel {
     }
 
     public static BufferedImage createThumbnail(BufferedImage img) {
-        img = resize(img, Method.SPEED, 250, OP_ANTIALIAS);
+        img = resize(img, Method.SPEED, 250, OP_ANTIALIAS);             //This is where the filter goes
         // Let's add a little border before we return result.
         return pad(img, 2);
     }

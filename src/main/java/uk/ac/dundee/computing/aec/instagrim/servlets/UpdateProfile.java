@@ -113,7 +113,7 @@ public class UpdateProfile extends HttpServlet {
         request.setAttribute("ProfileStore", ps);
         session.setAttribute("ProfileStore", ps);
         
-        response.sendRedirect("MainProfile.jsp");
+        response.sendRedirect("/Instagrim/ProfileHome");
         
     }
 

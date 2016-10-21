@@ -151,7 +151,8 @@ public class Image extends HttpServlet {
             HttpSession session=request.getSession();
             LoggedIn lg= (LoggedIn)session.getAttribute("LoggedIn");
             ProfileStore ps = (ProfileStore)session.getAttribute("ProfileStore");
-            String username="majed";
+            
+            String username="";
             if (lg.getlogedin()){
                 username=lg.getUsername();
             }
@@ -176,8 +177,9 @@ public class Image extends HttpServlet {
                 session.setAttribute("ProfileStore", ps);
             
             }
+            
             RequestDispatcher rd = request.getRequestDispatcher("/upload.jsp");
-             rd.forward(request, response);
+            rd.forward(request, response);
             
         }
 
