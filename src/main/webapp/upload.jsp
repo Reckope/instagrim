@@ -53,7 +53,21 @@
  
         <article class = "ArticleDesign">
             <h3>File Upload</h3>
+            
+            <h4>Select filter</h4>
+            
             <form method="POST" enctype="multipart/form-data" action="Image">
+                <!--<select id = "filterSelect" name = "filterSelect">
+                    <option value="1">None</option>
+                    <option value="2">Grayscale</option>
+                    <option value="3">Brighter</option>
+                    <option value="4">Darker</option>
+                </select>
+                -->
+                <!--<input type="text" name="filterSelect" placeholder="none, grayscale">-->
+                <p> </p>
+            
+            
                 File to upload: <input type="file" name="upfile"><br/>
                 <input type = "hidden" name = "check" value = "false">
                 <br/>

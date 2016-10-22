@@ -22,6 +22,7 @@ public class Pic {
     public void Pic() {
 
     }
+    
     public void setUUID(java.util.UUID UUID){
         this.UUID =UUID;
     }
@@ -51,5 +52,6 @@ public class Pic {
         byte image[] = Bytes.getArray(bImage);
         return image;
     }
+
 
 }

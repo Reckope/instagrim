@@ -12,6 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Instagrim</title>
         <link rel="stylesheet" type="text/css" href="Styles.css" />
+        <%LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");%>
     </head>
     <body>
         <header class = "MainHeader">
@@ -23,9 +24,9 @@
             <ul class = "List">
                 
                 <%    
-                        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                        
                         if (lg != null) {
-                            String UserName = lg.getUsername();
+                            //String UserName = lg.getUsername();
                             if (lg.getlogedin()) {
                  %>
                 <li><a href="/Instagrim/ProfileHome">Profile</a></li>              
@@ -63,6 +64,8 @@
                 <p> </p>
                 <input type="submit" class ="button" value="Register"> 
             </form>
+
+            <p name = "passwordFeedback"></p>
 
         </article>
         <footer>

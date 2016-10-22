@@ -14,6 +14,7 @@ public class LoggedIn {
     boolean logedin = false;
     String Username = null;
     String Firstname = null;
+    String passwordResult = null;
 
     public void LogedIn() {
 
@@ -50,4 +51,5 @@ public class LoggedIn {
     public boolean getlogedin() {
         return logedin;
     }
+
 }

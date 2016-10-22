@@ -52,26 +52,30 @@ public class PicModel {
 
     public void insertPic(byte[] b, String type, String name, String user, boolean check) {
         try {
+            
             Convertors convertor = new Convertors();
-
+            
             String types[]=Convertors.SplitFiletype(type);
             ByteBuffer buffer = ByteBuffer.wrap(b);
             int length = b.length;
             java.util.UUID picid = convertor.getTimeUUID();
+ 
             
             //The following is a quick and dirty way of doing this, will fill the disk quickly !
             Boolean success = (new File("/var/tmp/instagrim/")).mkdirs();
             FileOutputStream output = new FileOutputStream(new File("/var/tmp/instagrim/" + picid));
 
             output.write(b);
+            
             byte []  thumbb = picresize(picid.toString(),types[1]);
+
             int thumblength= thumbb.length;
             ByteBuffer thumbbuf=ByteBuffer.wrap(thumbb);
             byte[] processedb = picdecolour(picid.toString(),types[1]);
             ByteBuffer processedbuf=ByteBuffer.wrap(processedb);
             int processedlength=processedb.length;
             Session session = cluster.connect("instagrim");
-            
+
             if (check==false){
                 PreparedStatement psInsertPic = session.prepare("insert into pics ( picid, image,thumb,processed, user, interaction_time,imagelength,thumblength,processedlength,type,name) values(?,?,?,?,?,?,?,?,?,?,?)");
                 PreparedStatement psInsertPicToUser = session.prepare("insert into userpiclist ( picid, user, pic_added) values(?,?,?)");
@@ -103,8 +107,11 @@ public class PicModel {
 
     public byte[] picresize(String picid,String type) {
         try {
+            
             BufferedImage BI = ImageIO.read(new File("/var/tmp/instagrim/" + picid));
+            
             BufferedImage thumbnail = createThumbnail(BI);
+            
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ImageIO.write(thumbnail, type, baos);
             baos.flush();
@@ -120,8 +127,11 @@ public class PicModel {
     
     public byte[] picdecolour(String picid,String type) {
         try {
+            
             BufferedImage BI = ImageIO.read(new File("/var/tmp/instagrim/" + picid));
+            
             BufferedImage processed = createProcessed(BI);
+            
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ImageIO.write(processed, type, baos);
             baos.flush();
@@ -135,15 +145,46 @@ public class PicModel {
     }
 
     public static BufferedImage createThumbnail(BufferedImage img) {
-        img = resize(img, Method.SPEED, 250, OP_ANTIALIAS);             //This is where the filter goes
-        // Let's add a little border before we return result.
+        /*
+        if (null != filter)switch (filter) {
+            case "none":
+                img = resize(img, Method.SPEED, 250, OP_ANTIALIAS);             //This is where the filter goes
+                break;
+            case "grayscale":
+                img = resize(img, Method.SPEED, 250, OP_ANTIALIAS, OP_GRAYSCALE);             //This is where the filter goes
+                break;
+        }else if (null == filter){
+        
+            img = resize(img, Method.SPEED, 250, OP_ANTIALIAS);
+        
+        }
+        */
+
+        img = resize(img, Method.SPEED, 250, OP_ANTIALIAS, OP_BRIGHTER);
         return pad(img, 2);
     }
     
    public static BufferedImage createProcessed(BufferedImage img) {
-        int Width=img.getWidth()-1;
-        img = resize(img, Method.SPEED, Width, OP_ANTIALIAS);
-        return pad(img, 4);
+        
+       int Width=img.getWidth()-1;
+       /*
+       if (null != filter)switch (filter) {
+            case "none":
+                img = resize(img, Method.SPEED, Width, OP_ANTIALIAS);             //This is where the filter goes
+                break;
+            case "grayscale":
+                img = resize(img, Method.SPEED, Width, OP_ANTIALIAS, OP_GRAYSCALE);             //This is where the filter goes
+                break;
+        }else if (null == filter){
+        
+            img = resize(img, Method.SPEED, 250, OP_ANTIALIAS);
+        
+        }
+        */
+
+       img = resize(img, Method.SPEED, Width, OP_ANTIALIAS, OP_BRIGHTER);
+       return pad(img, 2);
+        
     }
    
     public java.util.LinkedList<Pic> getPicsForUser(String User) {

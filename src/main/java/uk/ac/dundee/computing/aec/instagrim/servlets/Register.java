@@ -49,6 +49,7 @@ public class Register extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         String username=request.getParameter("username");
         String password=request.getParameter("password");
         String firstname=request.getParameter("firstname");
@@ -57,7 +58,7 @@ public class Register extends HttpServlet {
         String confirmPassword = request.getParameter("confirmPassword");
         
         if(password.equals(confirmPassword)){
-        
+            
             HttpSession session=request.getSession();
         
             ProfileStore profilestore = new ProfileStore();
@@ -76,7 +77,7 @@ public class Register extends HttpServlet {
         }else{
 
             //JOptionPane.showMessageDialog(null, "Passwords do not match");
-            response.sendRedirect("wrongPassword.jsp");
+            response.sendRedirect("/Instagrim/PasswordError");
         
         }
     }

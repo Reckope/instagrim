@@ -69,7 +69,12 @@ public class Image extends HttpServlet {
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
      * response)
+     * @param request
+     * @param response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
      */
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
         String args[] = Convertors.SplitRequestPath(request);
@@ -127,7 +132,10 @@ public class Image extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
         String profileCheck = request.getParameter("check");
+
+        
         boolean check = false;
         
         if(profileCheck.equals("true")){
@@ -160,10 +168,13 @@ public class Image extends HttpServlet {
                 byte[] b = new byte[i + 1];
                 is.read(b);
                 System.out.println("Length : " + b.length);
+                
                 PicModel tm = new PicModel();
+                /*Pic pic = new Pic();
+                pic.setFilter(filter);*/
                 tm.setCluster(cluster);
                 tm.insertPic(b, type, filename, username, check);
-
+    
                 is.close();
             }
             if(check==true){

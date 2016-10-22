@@ -8,14 +8,15 @@
 <%@page import="uk.ac.dundee.computing.aec.instagrim.stores.*" %>
 <!DOCTYPE html>
 <html>
+    
     <head>
         <title id ="Instagrim">Instagrim</title>
         <link rel="stylesheet" type="text/css" href="Styles.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
-        <%ProfileStore profile = (ProfileStore) session.getAttribute("ProfileStore");%>
-        
+        <%ProfileStore profile = (ProfileStore) session.getAttribute("ProfileStore");%>        
     </head>
+    
     <body>
         <header class = "MainHeader">
             <h1 id ="IndexHeader" a href="/Instagrim">InstaGrim !</h1>
