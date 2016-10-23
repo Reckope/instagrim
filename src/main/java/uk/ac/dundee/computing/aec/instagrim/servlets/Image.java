@@ -16,6 +16,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+/*Each of these methods receives a HttpServletRequest and HttpServletResponse object,
+  which makes it easy to access the payload of the request and construct a response.*/
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import org.apache.commons.fileupload.FileItemIterator;
@@ -41,7 +43,7 @@ import uk.ac.dundee.computing.aec.instagrim.stores.*;
 })
 @MultipartConfig
 
-public class Image extends HttpServlet {
+public class Image extends HttpServlet {    //This is called inheritence, because this class inherited from HttPServlet.
 
     private static final long serialVersionUID = 1L;
     private Cluster cluster;
@@ -75,7 +77,7 @@ public class Image extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { //This is called by the server (via the service method) to allow a servlet to handle a GET request.
         // TODO Auto-generated method stub
         String args[] = Convertors.SplitRequestPath(request);
         int command;

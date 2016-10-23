@@ -13,6 +13,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+/*Each of these methods receives a HttpServletRequest and HttpServletResponse object,
+  which makes it easy to access the payload of the request and construct a response.*/
 import javax.servlet.http.HttpSession;
 import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.Cluster;
@@ -25,7 +27,7 @@ import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
  * @author JoeDavis
  */
 @WebServlet(name = "Profile", urlPatterns = {"/Profile"})
-public class Profile extends HttpServlet {
+public class Profile extends HttpServlet {  //This is called inheritence, because this class inherited from HttPServlet.
     Cluster cluster;
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -38,13 +40,21 @@ public class Profile extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) //This is called by the server (via the service method) to allow a servlet to handle a GET request.
         throws ServletException, IOException {
         HttpSession session = request.getSession();
         //if(session != null)
         session.invalidate();
             RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
             rd.forward(request,response);
+            
+            /*
+                This is extending REST.
+                Rest stands for "Representational State Transfer".
+                REST provides a definition of a resource, which is what web pages point to.
+                An API that adheres to the principles of REST does not require the client to know anything about the structure of the API.
+                So instead of the URL containing "index.jsp", it will instead just appear as "Profile".
+            */
     }
 
     /**

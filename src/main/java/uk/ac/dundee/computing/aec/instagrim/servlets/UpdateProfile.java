@@ -15,6 +15,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+/*Each of these methods receives a HttpServletRequest and HttpServletResponse object,
+  which makes it easy to access the payload of the request and construct a response.*/
 import javax.servlet.http.HttpSession;
 import uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts;
 import uk.ac.dundee.computing.aec.instagrim.models.User;
@@ -25,7 +27,7 @@ import uk.ac.dundee.computing.aec.instagrim.stores.ProfileStore;
  * @author JoeDavis
  */
 @WebServlet(name = "UpdateProfile", urlPatterns = {"/UpdateProfile"})
-public class UpdateProfile extends HttpServlet {
+public class UpdateProfile extends HttpServlet {    //This is called inheritence, because this class inherited from HttPServlet.
     
     Cluster cluster=null;
 
@@ -71,10 +73,18 @@ public class UpdateProfile extends HttpServlet {
      */
     
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) //This is called by the server (via the service method) to allow a servlet to handle a GET request.
             throws ServletException, IOException {
         RequestDispatcher rd = request.getRequestDispatcher("update.jsp");
         rd.forward(request,response);
+        
+            /*
+                This is extending REST.
+                Rest stands for "Representational State Transfer".
+                REST provides a definition of a resource, which is what web pages point to.
+                An API that adheres to the principles of REST does not require the client to know anything about the structure of the API.
+                So instead of the URL containing "update.jsp", it will instead just appear as "UpdateProfile".
+            */
         
         //processRequest(request, response);
     }

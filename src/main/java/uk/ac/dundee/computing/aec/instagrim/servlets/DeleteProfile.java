@@ -15,6 +15,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+/*Each of these methods receives a HttpServletRequest and HttpServletResponse object,
+  which makes it easy to access the payload of the request and construct a response.*/
+
 import javax.servlet.http.HttpSession;
 import uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts;
 import uk.ac.dundee.computing.aec.instagrim.models.User;
@@ -26,7 +29,7 @@ import uk.ac.dundee.computing.aec.instagrim.stores.ProfileStore;
  * @author JoeDavis
  */
 @WebServlet(name = "DeleteProfile", urlPatterns = {"/DeleteProfile"})
-public class DeleteProfile extends HttpServlet {
+public class DeleteProfile extends HttpServlet {    //This is called inheritence, because this class inherited from HttPServlet.
     
     Cluster cluster;
     
@@ -71,7 +74,7 @@ public class DeleteProfile extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) //This is called by the server (via the service method) to allow a servlet to handle a GET request.
             throws ServletException, IOException {
         processRequest(request, response);
     }

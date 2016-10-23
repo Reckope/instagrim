@@ -36,7 +36,6 @@ import org.imgscalr.Scalr.Method;
 
 import uk.ac.dundee.computing.aec.instagrim.lib.*;
 import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
-//import uk.ac.dundee.computing.aec.stores.TweetStore;
 
 public class PicModel {
 
@@ -50,6 +49,15 @@ public class PicModel {
         this.cluster = cluster;
     }
 
+    /**
+     *
+     * @param b
+     * @param type
+     * @param name
+     * @param user
+     * @param check
+     * @param picFilter
+     */
     public void insertPic(byte[] b, String type, String name, String user, boolean check, String picFilter) {
         try {
             
@@ -104,6 +112,13 @@ public class PicModel {
         }
     }
 
+    /**
+     *
+     * @param picid
+     * @param type
+     * @param picFilter
+     * @return
+     */
     public byte[] picresize(String picid,String type, String picFilter) {
         try {
             
@@ -124,6 +139,13 @@ public class PicModel {
         return null;
     }
     
+    /**
+     *
+     * @param picid
+     * @param type
+     * @param picFilter
+     * @return
+     */
     public byte[] picdecolour(String picid,String type, String picFilter) {
         try {
             
@@ -141,6 +163,12 @@ public class PicModel {
         return null;
     }
 
+    /**
+     *
+     * @param img
+     * @param picFilter
+     * @return
+     */
     public static BufferedImage createThumbnail(BufferedImage img, String picFilter) {
 
         switch (picFilter) {
@@ -161,7 +189,13 @@ public class PicModel {
         
     }
     
-   public static BufferedImage createProcessed(BufferedImage img, String picFilter) {
+    /**
+     *
+     * @param img
+     * @param picFilter
+     * @return
+     */
+    public static BufferedImage createProcessed(BufferedImage img, String picFilter) {
         
        int Width=img.getWidth()-1;
         switch (picFilter) {
@@ -178,10 +212,15 @@ public class PicModel {
                 img = resize(img, Method.SPEED, 250, OP_ANTIALIAS);
                 break;
         }
-        return pad(img, 4);
+        return pad(img, 2);
         
     }
    
+    /**
+     *
+     * @param User
+     * @return
+     */
     public java.util.LinkedList<Pic> getPicsForUser(String User) {
         java.util.LinkedList<Pic> Pics = new java.util.LinkedList<>();
         Session session = cluster.connect("instagrim");
