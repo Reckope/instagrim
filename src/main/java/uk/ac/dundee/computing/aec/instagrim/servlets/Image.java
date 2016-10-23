@@ -111,10 +111,10 @@ public class Image extends HttpServlet {
     }
 
     private void DisplayImage(int type,String Image, HttpServletResponse response) throws ServletException, IOException {
+        
         PicModel tm = new PicModel();
         tm.setCluster(cluster);
-  
-        
+         
         Pic p = tm.getPic(type,java.util.UUID.fromString(Image));
         
         OutputStream out = response.getOutputStream();
@@ -134,8 +134,8 @@ public class Image extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
         String profileCheck = request.getParameter("check");
-
-        
+        String picFilter = request.getParameter("filter");
+        System.out.println("Filter IMAGE.JAVA: " + picFilter);
         boolean check = false;
         
         if(profileCheck.equals("true")){
@@ -143,9 +143,6 @@ public class Image extends HttpServlet {
             check = true;
             
         }
-        
-        System.out.println("Check: " + check);
-        System.out.println("ProfileCheck " + profileCheck);
         
         for (Part part : request.getParts()) {
             
@@ -173,7 +170,7 @@ public class Image extends HttpServlet {
                 /*Pic pic = new Pic();
                 pic.setFilter(filter);*/
                 tm.setCluster(cluster);
-                tm.insertPic(b, type, filename, username, check);
+                tm.insertPic(b, type, filename, username, check, picFilter);
     
                 is.close();
             }

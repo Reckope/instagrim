@@ -50,7 +50,7 @@ public class PicModel {
         this.cluster = cluster;
     }
 
-    public void insertPic(byte[] b, String type, String name, String user, boolean check) {
+    public void insertPic(byte[] b, String type, String name, String user, boolean check, String picFilter) {
         try {
             
             Convertors convertor = new Convertors();
@@ -67,16 +67,15 @@ public class PicModel {
 
             output.write(b);
             
-            byte []  thumbb = picresize(picid.toString(),types[1]);
-
+            byte []  thumbb = picresize(picid.toString(),types[1], picFilter);
             int thumblength= thumbb.length;
             ByteBuffer thumbbuf=ByteBuffer.wrap(thumbb);
-            byte[] processedb = picdecolour(picid.toString(),types[1]);
+            byte[] processedb = picdecolour(picid.toString(),types[1], picFilter);
             ByteBuffer processedbuf=ByteBuffer.wrap(processedb);
             int processedlength=processedb.length;
             Session session = cluster.connect("instagrim");
 
-            if (check==false){
+            if (check==false){ // This checks to see if there is currently a profile picture
                 PreparedStatement psInsertPic = session.prepare("insert into pics ( picid, image,thumb,processed, user, interaction_time,imagelength,thumblength,processedlength,type,name) values(?,?,?,?,?,?,?,?,?,?,?)");
                 PreparedStatement psInsertPicToUser = session.prepare("insert into userpiclist ( picid, user, pic_added) values(?,?,?)");
                 BoundStatement bsInsertPic = new BoundStatement(psInsertPic);
@@ -105,12 +104,12 @@ public class PicModel {
         }
     }
 
-    public byte[] picresize(String picid,String type) {
+    public byte[] picresize(String picid,String type, String picFilter) {
         try {
             
             BufferedImage BI = ImageIO.read(new File("/var/tmp/instagrim/" + picid));
             
-            BufferedImage thumbnail = createThumbnail(BI);
+            BufferedImage thumbnail = createThumbnail(BI, picFilter);
             
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ImageIO.write(thumbnail, type, baos);
@@ -125,13 +124,11 @@ public class PicModel {
         return null;
     }
     
-    public byte[] picdecolour(String picid,String type) {
+    public byte[] picdecolour(String picid,String type, String picFilter) {
         try {
             
-            BufferedImage BI = ImageIO.read(new File("/var/tmp/instagrim/" + picid));
-            
-            BufferedImage processed = createProcessed(BI);
-            
+            BufferedImage BI = ImageIO.read(new File("/var/tmp/instagrim/" + picid));            
+            BufferedImage processed = createProcessed(BI, picFilter);         
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ImageIO.write(processed, type, baos);
             baos.flush();
@@ -144,46 +141,44 @@ public class PicModel {
         return null;
     }
 
-    public static BufferedImage createThumbnail(BufferedImage img) {
-        /*
-        if (null != filter)switch (filter) {
-            case "none":
-                img = resize(img, Method.SPEED, 250, OP_ANTIALIAS);             //This is where the filter goes
-                break;
-            case "grayscale":
-                img = resize(img, Method.SPEED, 250, OP_ANTIALIAS, OP_GRAYSCALE);             //This is where the filter goes
-                break;
-        }else if (null == filter){
-        
-            img = resize(img, Method.SPEED, 250, OP_ANTIALIAS);
-        
-        }
-        */
+    public static BufferedImage createThumbnail(BufferedImage img, String picFilter) {
 
-        img = resize(img, Method.SPEED, 250, OP_ANTIALIAS, OP_BRIGHTER);
+        switch (picFilter) {
+            case "grayscale":
+                img = resize(img, Method.SPEED, 250, OP_ANTIALIAS, OP_GRAYSCALE);
+                break;
+            case "brighter":
+                img = resize(img, Method.SPEED, 250, OP_ANTIALIAS, OP_BRIGHTER);
+                break;
+            case "darker":
+                img = resize(img, Method.SPEED, 250, OP_ANTIALIAS, OP_DARKER);
+                break;
+            default:
+                img = resize(img, Method.SPEED, 250, OP_ANTIALIAS);
+                break;
+        }
         return pad(img, 2);
+        
     }
     
-   public static BufferedImage createProcessed(BufferedImage img) {
+   public static BufferedImage createProcessed(BufferedImage img, String picFilter) {
         
        int Width=img.getWidth()-1;
-       /*
-       if (null != filter)switch (filter) {
-            case "none":
-                img = resize(img, Method.SPEED, Width, OP_ANTIALIAS);             //This is where the filter goes
-                break;
+        switch (picFilter) {
             case "grayscale":
-                img = resize(img, Method.SPEED, Width, OP_ANTIALIAS, OP_GRAYSCALE);             //This is where the filter goes
+                img = resize(img, Method.SPEED, 250, OP_ANTIALIAS, OP_GRAYSCALE);
                 break;
-        }else if (null == filter){
-        
-            img = resize(img, Method.SPEED, 250, OP_ANTIALIAS);
-        
+            case "brighter":
+                img = resize(img, Method.SPEED, 250, OP_ANTIALIAS, OP_BRIGHTER);
+                break;
+            case "darker":
+                img = resize(img, Method.SPEED, 250, OP_ANTIALIAS, OP_DARKER);
+                break;
+            default:
+                img = resize(img, Method.SPEED, 250, OP_ANTIALIAS);
+                break;
         }
-        */
-
-       img = resize(img, Method.SPEED, Width, OP_ANTIALIAS, OP_BRIGHTER);
-       return pad(img, 2);
+        return pad(img, 4);
         
     }
    

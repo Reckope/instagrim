@@ -15,8 +15,8 @@
     </head>
     <body>
         <header class = "MainHeader">
-        <h1>InstaGrim ! </h1>
-        <h3>Your world in Black and White</h3>
+            <h1>InstaGrim ! </h1>
+            <h3>Your world in Black and White</h3>
         </header>
         
         <nav>
@@ -53,10 +53,8 @@
        
         <article class = "ArticleDesign">
             <h3>Passwords do not match</h3>
-            <h4>Please ensure both passwords match<h4>
-                    
+            <h4>Please ensure both passwords match<h4>                  
             <a href="/Instagrim/Register" class="button" >Back to register</a>
-
         </article>
         <footer>
             

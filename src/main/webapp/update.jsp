@@ -15,8 +15,8 @@
     </head>
     <body>
         <header class = "MainHeader">
-        <h1>InstaGrim ! </h1>
-        <h3>Your world in Black and White</h3>
+            <h1>InstaGrim ! </h1>
+            <h3>Your world in Black and White</h3>
         </header>
         
         <nav>

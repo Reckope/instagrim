@@ -27,7 +27,7 @@
                         if (lg != null) {
                             String UserName = lg.getUsername();
                             if (lg.getlogedin()) {
-                 %>
+                %>
                 <li><a href="/Instagrim/ProfileHome">Profile</a></li>             
                 <li><a href="/Instagrim/Upload">Upload</a></li>
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
@@ -44,7 +44,7 @@
             </ul>
         </nav>
             <div class = "ArticleDesign">
-            <p>Welcome to Instagrim!</p>
+                <p>Welcome to Instagrim!</p>
             </div>
         <footer>
             

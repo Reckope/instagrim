@@ -118,7 +118,7 @@ public class User {
     public void UpdateUser(String username, String firstname, String surname, String email){
     
         Session session = cluster.connect("Instagrim");
-        PreparedStatement ps = session.prepare("UPDATE userprofiles SET first_name = '" + firstname
+        PreparedStatement ps = session.prepare("UPDATE userprofiles SET first_name = '" + firstname // This updates the current information with the new information.
                                                 + "', last_name = '" + surname
                                                 + "', email = '" + email + "' WHERE login =?");
         
@@ -133,15 +133,12 @@ public class User {
     
     public void deleteUser(String username){
     
-        Session session = cluster.connect("Instagrim");
-        
-        PreparedStatement ps = session.prepare("DELETE from userprofiles WHERE login =?");
-        
+        Session session = cluster.connect("Instagrim");       
+        PreparedStatement ps = session.prepare("DELETE from userprofiles WHERE login =?");       
         ResultSet rs = null;
         BoundStatement boundStatement = new BoundStatement(ps);
         rs = session.execute(boundStatement.bind(username));
-        
-    
+       
     }
     
     public java.util.UUID getProfileUUID (String username){
@@ -162,9 +159,8 @@ public class User {
     
     }
     
-       public void setCluster(Cluster cluster) {
-        this.cluster = cluster;
-        
+    public void setCluster(Cluster cluster) {
+        this.cluster = cluster;       
         
     }
 
