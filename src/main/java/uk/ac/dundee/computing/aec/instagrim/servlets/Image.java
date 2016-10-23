@@ -136,8 +136,8 @@ public class Image extends HttpServlet {    //This is called inheritence, becaus
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
         String profileCheck = request.getParameter("check");
-        String picFilter = request.getParameter("filter");
-        System.out.println("Filter IMAGE.JAVA: " + picFilter);
+        //String picFilter = request.getParameter("filter");
+        //System.out.println("Filter IMAGE.JAVA: " + picFilter);
         boolean check = false;
         
         if(profileCheck.equals("true")){
@@ -172,7 +172,7 @@ public class Image extends HttpServlet {    //This is called inheritence, becaus
                 /*Pic pic = new Pic();
                 pic.setFilter(filter);*/
                 tm.setCluster(cluster);
-                tm.insertPic(b, type, filename, username, check, picFilter);
+                tm.insertPic(b, type, filename, username, check);
     
                 is.close();
             }

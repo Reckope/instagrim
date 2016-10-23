@@ -58,7 +58,7 @@ public class PicModel {
      * @param check
      * @param picFilter
      */
-    public void insertPic(byte[] b, String type, String name, String user, boolean check, String picFilter) {
+    public void insertPic(byte[] b, String type, String name, String user, boolean check) {
         try {
             
             Convertors convertor = new Convertors();
@@ -75,10 +75,10 @@ public class PicModel {
 
             output.write(b);
             
-            byte []  thumbb = picresize(picid.toString(),types[1], picFilter);
+            byte []  thumbb = picresize(picid.toString(),types[1]);
             int thumblength= thumbb.length;
             ByteBuffer thumbbuf=ByteBuffer.wrap(thumbb);
-            byte[] processedb = picdecolour(picid.toString(),types[1], picFilter);
+            byte[] processedb = picdecolour(picid.toString(),types[1]);
             ByteBuffer processedbuf=ByteBuffer.wrap(processedb);
             int processedlength=processedb.length;
             Session session = cluster.connect("instagrim");
@@ -119,12 +119,12 @@ public class PicModel {
      * @param picFilter
      * @return
      */
-    public byte[] picresize(String picid,String type, String picFilter) {
+    public byte[] picresize(String picid,String type) {
         try {
             
             BufferedImage BI = ImageIO.read(new File("/var/tmp/instagrim/" + picid));
             
-            BufferedImage thumbnail = createThumbnail(BI, picFilter);
+            BufferedImage thumbnail = createThumbnail(BI);
             
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ImageIO.write(thumbnail, type, baos);
@@ -146,11 +146,11 @@ public class PicModel {
      * @param picFilter
      * @return
      */
-    public byte[] picdecolour(String picid,String type, String picFilter) {
+    public byte[] picdecolour(String picid,String type) {
         try {
             
             BufferedImage BI = ImageIO.read(new File("/var/tmp/instagrim/" + picid));            
-            BufferedImage processed = createProcessed(BI, picFilter);         
+            BufferedImage processed = createProcessed(BI);         
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ImageIO.write(processed, type, baos);
             baos.flush();
@@ -169,8 +169,9 @@ public class PicModel {
      * @param picFilter
      * @return
      */
-    public static BufferedImage createThumbnail(BufferedImage img, String picFilter) {
-
+    public static BufferedImage createThumbnail(BufferedImage img) {
+        
+        String picFilter = "";
         switch (picFilter) {
             case "grayscale":
                 img = resize(img, Method.SPEED, 250, OP_ANTIALIAS, OP_GRAYSCALE);
@@ -195,9 +196,10 @@ public class PicModel {
      * @param picFilter
      * @return
      */
-    public static BufferedImage createProcessed(BufferedImage img, String picFilter) {
+    public static BufferedImage createProcessed(BufferedImage img) {
         
        int Width=img.getWidth()-1;
+       String picFilter = "";
         switch (picFilter) {
             case "grayscale":
                 img = resize(img, Method.SPEED, 250, OP_ANTIALIAS, OP_GRAYSCALE);
