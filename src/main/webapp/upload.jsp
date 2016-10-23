@@ -58,19 +58,22 @@
             
             <form method="POST" enctype="multipart/form-data" action="Image">
                 <!--<select id = "filterSelect" name = "filterSelect">
-                    <option value="1">None</option>
-                    <option value="2">Grayscale</option>
-                    <option value="3">Brighter</option>
-                    <option value="4">Darker</option>
-                </select>
+                    <option value="">Empty</option>
+                    <option value="none">None</option>
+                    <option value="grayscale">Grayscale</option>
+                    <option value="brighter">Brighter</option>
+                    <option value="darker">Darker</option>
+                </select><br>
                 -->
-                <input type="radio" name="filter" value=""> empty<br>
-                <input type="radio" name="filter" value="grayscale" checked> GrayScale<br>
+                
+                <input type="radio" name="filter" value="" checked> empty<br>
+                <input type="radio" name="filter" value="none"> none<br>
+                <input type="radio" name="filter" value="grayscale"> GrayScale<br>
                 <input type="radio" name="filter" value="brighter"> Brighter<br>
                 <input type="radio" name="filter" value="darker"> Darker<br>
-                <input type="radio" name="filter" value="none"> none<br>
                 
                 
+                </br>
                 File to upload: <input type="file" name="upfile"><br/>
                 <input type = "hidden" name = "check" value = "false">
                 <br/>
