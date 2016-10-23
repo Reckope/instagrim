@@ -65,13 +65,13 @@
                     <option value="darker">Darker</option>
                 </select><br>
                 -->
-                
+                <!--
                 <input type="radio" name="filter" value="" checked> empty<br>
                 <input type="radio" name="filter" value="none"> none<br>
                 <input type="radio" name="filter" value="grayscale"> GrayScale<br>
                 <input type="radio" name="filter" value="brighter"> Brighter<br>
                 <input type="radio" name="filter" value="darker"> Darker<br>
-                
+                -->
                 
                 </br>
                 File to upload: <input type="file" name="upfile"><br/>
